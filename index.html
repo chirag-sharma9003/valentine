@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Valentine 💖</title>
-
+<title>Sexy Valentine 💖</title>
 <style>
+/* ---- BODY ---- */
 body {
   margin: 0;
   height: 100vh;
@@ -14,30 +14,63 @@ body {
   align-items: center;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
+  position: relative;
 }
 
+/* ---- FLOATING HEARTS ---- */
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  animation: float 6s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* ---- CARD ---- */
 .card {
-  background: white;
+  background: rgba(255,255,255,0.95);
   padding: 30px;
   border-radius: 25px;
   text-align: center;
-  width: 320px;
+  width: 340px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  z-index: 2;
 }
 
 h1 {
   color: #ff4d6d;
+  margin-bottom: 10px;
 }
 
-p {
-  font-size: 18px;
-  color: #333;
+/* ---- SEXY VALENTINE TEXT ---- */
+.valentine-question {
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 700;
+  color: #ff2f68;
+  text-shadow: 0 4px 10px rgba(255,77,109,0.5);
+  animation: pulse 2s infinite;
+  pointer-events: none; /* non-clickable */
+  display: block;
+  margin: 15px 0;
+  line-height: 1.2;
 }
 
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ---- BUTTONS ---- */
 .buttons {
   margin-top: 25px;
   height: 90px;
-  /* position: relative; */
 }
 
 button {
@@ -46,6 +79,11 @@ button {
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 #yes {
@@ -59,10 +97,11 @@ button {
   left: 150px;
 }
 
-/* Hidden surprise */
+/* ---- SURPRISE GIF ---- */
 #surprise {
   display: none;
   text-align: center;
+  z-index: 3;
 }
 
 #surprise img {
@@ -72,22 +111,33 @@ button {
 
 #surpriseText {
   margin-top: 15px;
-  font-size: 18px;
+  font-size: 20px;
   color: white;
   font-weight: bold;
+  line-height: 1.4;
 }
 </style>
 </head>
-
 <body>
 
+<!-- FLOATING HEARTS -->
+<span class="heart" style="left:5%; animation-delay:0s;">❤️</span>
+<span class="heart" style="left:20%; animation-delay:1s;">💖</span>
+<span class="heart" style="left:35%; animation-delay:2s;">💕</span>
+<span class="heart" style="left:50%; animation-delay:3s;">💘</span>
+<span class="heart" style="left:65%; animation-delay:4s;">❤️</span>
+<span class="heart" style="left:80%; animation-delay:5s;">💞</span>
+
+<!-- CARD -->
 <div class="card" id="card">
   <h1>Hey Bhawna 💕</h1>
-  <p>
-    From the moment you came into my life,<br>
-    every day feels like Valentine’s Day 🌹<br><br>
-    Will you be my Valentine? 💖
+  <p>From the moment you came into my life,<br>
+     every day feels like Valentine’s Day 🌹
   </p>
+
+  <span class="valentine-question">
+    Will you be my Valentine? 💖
+  </span>
 
   <div class="buttons">
     <button id="yes" onclick="yesClick()">Haan meri jaan 😘</button>
@@ -95,14 +145,14 @@ button {
   </div>
 </div>
 
-<!-- Surprise Section -->
+<!-- SURPRISE GIF -->
 <div id="surprise">
   <img src="https://media.tenor.com/pVTyiTGidkQAAAAj/bubu-kiss-dudu-kiss-kiss.gif" alt="Kiss GIF">
   <div id="surpriseText">
     Hey Bhawna 💕<br><br>
     From the moment you came into my life,<br>
     every day feels like Valentine’s Day 🌹<br><br>
-    Will you be my Valentine? 💖<br><br>
+    <span class="valentine-question">Will you be my Valentine? 💖</span><br><br>
     <b>Haan meri jaan 😘</b>
   </div>
 </div>
@@ -121,6 +171,5 @@ function moveNo() {
   noBtn.style.top = y + "px";
 }
 </script>
-
 </body>
 </html>
