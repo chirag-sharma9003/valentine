@@ -23,6 +23,7 @@ body {
   color: rgba(255,255,255,0.8);
   font-size: 20px;
   animation: float 6s infinite linear;
+  user-select: none;
 }
 
 @keyframes float {
@@ -45,6 +46,11 @@ body {
 h1 {
   color: #ff4d6d;
   margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
 }
 
 /* ---- SEXY VALENTINE TEXT ---- */
@@ -71,6 +77,7 @@ h1 {
 .buttons {
   margin-top: 25px;
   height: 90px;
+  position: relative;
 }
 
 button {
@@ -89,6 +96,7 @@ button:hover {
 #yes {
   background: #ff4d6d;
   color: white;
+  z-index: 2;
 }
 
 #no {
@@ -101,20 +109,28 @@ button:hover {
 #surprise {
   display: none;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* click disabled */
   z-index: 3;
+  width: 100%;
 }
 
 #surprise img {
-  width: 220px;
+  width: 250px;
   border-radius: 20px;
+  pointer-events: none;
 }
 
 #surpriseText {
-  margin-top: 15px;
-  font-size: 20px;
+  margin-top: 20px;
+  font-size: 22px;
   color: white;
   font-weight: bold;
   line-height: 1.4;
+  pointer-events: none;
 }
 </style>
 </head>
@@ -150,23 +166,25 @@ button:hover {
   <img src="https://media.tenor.com/pVTyiTGidkQAAAAj/bubu-kiss-dudu-kiss-kiss.gif" alt="Kiss GIF">
   <div id="surpriseText">
     Hey Bhawna 💕<br><br>
-    From the moment you came into my life,<br>
-    every day feels like Valentine’s Day 🌹<br><br>
+    Tum meri duniya ki sabse beautiful cheez ho 🌹<br>
+    Har pal tumhare saath ek nayi khushi laata hai 😘<br><br>
     <span class="valentine-question">Will you be my Valentine? 💖</span><br><br>
-    <b>Haan meri jaan 😘</b>
+    <b>Haan meri jaan 😘</b><br>
+    <i>Promise, tumhare bina ye dil adhoora hai ❤️</i>
   </div>
 </div>
 
 <script>
 function yesClick() {
+  // Hide card and show GIF + sexy text
   document.getElementById("card").style.display = "none";
   document.getElementById("surprise").style.display = "block";
 }
 
 function moveNo() {
   const noBtn = document.getElementById("no");
-  const x = Math.random() * 180;
-  const y = Math.random() * 70;
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
